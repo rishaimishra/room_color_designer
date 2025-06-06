@@ -85,13 +85,13 @@ function App() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="space-y-6">
-          {/* Search Bar */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">Color Search</h2>
+          {/* Search Bar - Made more compact */}
+          <div className="bg-white rounded-xl shadow-lg p-4 max-w-2xl mx-auto">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-lg font-semibold text-gray-800">Color Search</h2>
               {isLoading && (
                 <div className="flex items-center space-x-2 text-blue-600">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
                   <span className="text-sm">Searching...</span>
                 </div>
               )}
@@ -99,25 +99,24 @@ function App() {
             <SearchInput onSearch={handleSearch} isLoading={isLoading} />
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            {/* Room Visualizer - Takes up 2 columns */}
-            <div className="xl:col-span-2">
-              <RoomVisualizer
-                roomColors={roomColors}
-                selectedColorName={selectedColor?.name || 'Default'}
-                onWallColorChange={handleWallColorChange}
-                selectedColor={selectedColor?.hex || '#F3F4F6'}
-              />
-            </div>
-            
-            {/* Color Collection - Takes up 1 column */}
-            <div className="xl:col-span-1">
-              <ColorCollection
-                colors={searchResults}
-                selectedColor={selectedColor}
-                onColorSelect={handleColorSelect}
-              />
-            </div>
+          {/* Room Visualizer - Full width */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <RoomVisualizer
+              roomColors={roomColors}
+              selectedColorName={selectedColor?.name || 'Default'}
+              onWallColorChange={handleWallColorChange}
+              selectedColor={selectedColor?.hex || '#F3F4F6'}
+            />
+          </div>
+          
+          {/* Color Collection - Below Room Visualizer */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Color Collection</h2>
+            <ColorCollection
+              colors={searchResults}
+              selectedColor={selectedColor}
+              onColorSelect={handleColorSelect}
+            />
           </div>
         </div>
       </main>
